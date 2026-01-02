@@ -1,13 +1,13 @@
-package nh.demo.petclinic;
+package nh.demo.plantify;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PetclinicModulithApplication {
+public class PlantifyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PetclinicModulithApplication.class, args);
+        SpringApplication.run(PlantifyApplication.class, args);
     }
 
 }

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>nh.demo</groupId>
-    <artifactId>petclinic-modulith</artifactId>
+    <artifactId>plantify</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>petclinic-modulith</name>
-    <description>petclinic-modulith</description>
+    <description>plantify-modulith</description>
     <url/>
     <licenses>
         <license/>
