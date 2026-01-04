@@ -1,4 +1,6 @@
-package nh.demo.plantify.care;
+package nh.demo.plantify.care.suggestion;
+
+import nh.demo.plantify.care.CareTaskType;
 
 import java.time.LocalDate;
 

@@ -1,9 +1,8 @@
-package nh.demo.plantify.care;
+package nh.demo.plantify.care.suggestion;
 
 import nh.demo.plantify.plant.PlantType;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CareTaskSuggestionFactory {
 

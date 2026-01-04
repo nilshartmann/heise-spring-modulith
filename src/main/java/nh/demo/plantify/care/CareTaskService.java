@@ -1,5 +1,9 @@
 package nh.demo.plantify.care;
 
+import nh.demo.plantify.care.suggestion.CareTaskSuggestion;
+import nh.demo.plantify.care.suggestion.CareTaskSuggestionService;
+import nh.demo.plantify.care.suggestion.OneTimeCareTaskSuggestion;
+import nh.demo.plantify.care.suggestion.RecurringCareTaskSuggestion;
 import nh.demo.plantify.plant.PlantRegisteredEvent;
 import nh.demo.plantify.shared.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;

@@ -1,11 +1,11 @@
-package nh.demo.plantify.care;
+package nh.demo.plantify.care.suggestion;
 
+import nh.demo.plantify.care.CareTaskType;
 import nh.demo.plantify.plant.PlantType;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 class DefaultCareTaskSuggestionFactory implements CareTaskSuggestionFactory {

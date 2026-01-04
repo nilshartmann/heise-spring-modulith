@@ -1,10 +1,9 @@
-package nh.demo.plantify.care;
+package nh.demo.plantify.care.suggestion;
 
-import nh.demo.plantify.plant.Plant;
+import nh.demo.plantify.care.CareTaskType;
 import nh.demo.plantify.plant.PlantType;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

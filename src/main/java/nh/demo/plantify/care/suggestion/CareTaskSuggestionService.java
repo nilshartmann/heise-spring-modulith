@@ -1,4 +1,4 @@
-package nh.demo.plantify.care;
+package nh.demo.plantify.care.suggestion;
 
 import nh.demo.plantify.plant.PlantType;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-class CareTaskSuggestionService {
+public class CareTaskSuggestionService {
 
     private final List<CareTaskSuggestionFactory> factories;
 
@@ -17,7 +17,7 @@ class CareTaskSuggestionService {
         this.factories = factories;
     }
 
-    List<CareTaskSuggestion> getBestSuggestionsByPlantType(PlantType plantType, String location) {
+    public List<CareTaskSuggestion> getBestSuggestionsByPlantType(PlantType plantType, String location) {
         return factories.stream()
             .flatMap(f -> f.createSuggestion(plantType, location).stream())
             .collect(Collectors.groupingBy(
