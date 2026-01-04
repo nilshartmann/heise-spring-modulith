@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.YearMonth;
 import java.util.UUID;
 
-@Externalized("invoices::#{#this.clientId()}")
+@Externalized(target = "invoices::#{#this.ownerId()}")
 public record InvoiceGeneratedEvent(
     UUID ownerId,
     YearMonth billingPeriod,

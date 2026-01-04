@@ -37,10 +37,6 @@ public class UsageTracker {
 
         usageRepository.save(usageRecord);
 
-        if (usageRecord.getUsageType() == UsageType.SETUP_FEE) {
-            throw new IllegalStateException("bad...");
-        }
-
         log.info("Successfully tracked initial care tasks: usageId={}", usageRecord.getId());
     }
 

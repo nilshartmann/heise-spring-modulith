@@ -99,7 +99,7 @@ public class CareTaskService {
     }
 
     @Transactional(readOnly = true)
-    public List<CareTaskDto> getAllCareTasks() {
+    List<CareTaskDto> getAllCareTasks() {
         return careTaskRepository
             .findAll().stream()
             .map(CareTaskDto::of)
