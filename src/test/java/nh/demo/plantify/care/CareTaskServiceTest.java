@@ -59,6 +59,9 @@ class CareTaskServiceTest {
     @Test
     void only_tables_for_required_modules_are_created() {
         // Nur Demo: "Beweis", das Spring Modulith nur die DB für das einzelne Modul startet
+        //
+        // 'plant'-Modul muss nicht gestartet werden, weil es zwar eine Code-Abhängigkeit gibt (PlantRegisteredEvent),
+        // aber keine Service-Abhängigkeit
         var schemaName = jdbcClient
             .sql("select nspname as schema_name from pg_namespace p, pg_authid pa where p.nspowner = pa.oid and pa.rolname = :myUserName and p.nspname not like 'pg_%' and p.nspname != 'information_schema'")
             .param("myUserName", TestcontainersConfiguration.TEST_DB_USERNAME)

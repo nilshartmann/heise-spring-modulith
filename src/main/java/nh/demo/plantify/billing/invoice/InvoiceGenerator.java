@@ -1,4 +1,4 @@
-package nh.demo.plantify.billing;
+package nh.demo.plantify.billing.invoice;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

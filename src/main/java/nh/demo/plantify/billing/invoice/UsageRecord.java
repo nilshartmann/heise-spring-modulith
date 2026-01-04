@@ -1,4 +1,4 @@
-package nh.demo.plantify.billing;
+package nh.demo.plantify.billing.invoice;
 
 import jakarta.persistence.*;
 
@@ -11,7 +11,7 @@ import java.util.UUID;
     schema = "billing_schema",
     name = "usage_records"
 )
-class UsageRecord {
+public class UsageRecord {
     @Id
     private UUID id;
     
@@ -30,7 +30,7 @@ class UsageRecord {
 
     protected UsageRecord() {}
 
-    UsageRecord(UUID plantId, UsageType usageType, Instant recordedAt, long costCents) {
+    public UsageRecord(UUID plantId, UsageType usageType, Instant recordedAt, long costCents) {
         this.id = UUID.randomUUID();
         this.plantId = Objects.requireNonNull(plantId);
         this.usageType = Objects.requireNonNull(usageType);

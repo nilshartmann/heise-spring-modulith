@@ -1,17 +1,17 @@
 package nh.demo.plantify.billing;
 
-import nh.demo.plantify.care.CareTask;
+import nh.demo.plantify.billing.invoice.UsageRecord;
+import nh.demo.plantify.billing.invoice.UsageRepository;
+import nh.demo.plantify.billing.invoice.UsageType;
 import nh.demo.plantify.care.CareTaskCompletedEvent;
 import nh.demo.plantify.care.CareTaskType;
 import nh.demo.plantify.care.InitialCareTasksCreatedEvent;
 import nh.demo.plantify.storage.PlantStorageCompletedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.modulith.ApplicationModule;
 import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Component;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
@@ -36,6 +36,11 @@ class UsageTracker {
         );
 
         usageRepository.save(usageRecord);
+
+        if (usageRecord.getUsageType() == UsageType.SETUP_FEE) {
+            throw new IllegalStateException("bad...");
+        }
+
         log.info("Successfully tracked initial care tasks: usageId={}", usageRecord.getId());
     }
 

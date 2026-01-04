@@ -1,4 +1,4 @@
-package nh.demo.plantify.billing;
+package nh.demo.plantify.billing.invoice;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
@@ -7,7 +7,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-interface UsageRepository extends Repository<UsageRecord, UUID> {
+public interface UsageRepository extends Repository<UsageRecord, UUID> {
 
     UsageRecord save(UsageRecord usageRecord);
 
