@@ -1,6 +1,5 @@
 package nh.demo.plantify.care.suggestion;
 
-import nh.demo.plantify.care.CareTaskType;
 import nh.demo.plantify.plant.PlantType;
 import org.junit.jupiter.api.Test;
 

@@ -1,9 +1,12 @@
 package nh.demo.plantify.care;
 
+import nh.demo.plantify.care.internal.CareTaskSource;
+import nh.demo.plantify.care.suggestion.CareTaskType;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
-public record CareTaskDto(
+record CareTaskDto(
     UUID id,
     UUID plantId,
     CareTaskType type,

@@ -1,5 +1,6 @@
 package nh.demo.plantify.care;
 
+import nh.demo.plantify.care.internal.*;
 import nh.demo.plantify.care.suggestion.CareTaskSuggestion;
 import nh.demo.plantify.care.suggestion.CareTaskSuggestionService;
 import nh.demo.plantify.care.suggestion.OneTimeCareTaskSuggestion;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-class CareTaskService {
+public class CareTaskService {
 
     private static final Logger log = LoggerFactory.getLogger(CareTaskService.class);
 
@@ -94,6 +95,7 @@ class CareTaskService {
         }
 
         return CareTaskDto.of(careTask);
+
     }
 
     @Transactional(readOnly = true)

@@ -1,6 +1,6 @@
 package nh.demo.plantify.care.suggestion;
 
-import nh.demo.plantify.care.CareTaskType;
+import org.springframework.modulith.NamedInterface;
 
 public record RecurringCareTaskSuggestion(
     CareTaskType taskType,

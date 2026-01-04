@@ -1,6 +1,5 @@
 package nh.demo.plantify.storage;
 
-import nh.demo.plantify.care.CareTaskDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

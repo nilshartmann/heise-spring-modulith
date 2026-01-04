@@ -1,6 +1,8 @@
 package nh.demo.plantify.care;
 
 import jakarta.persistence.*;
+import nh.demo.plantify.care.internal.CareTaskSource;
+import nh.demo.plantify.care.suggestion.CareTaskType;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -8,7 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "care_tasks", schema = "care_schema")
-public class CareTask {
+class CareTask {
 
     @Id
     private UUID id;

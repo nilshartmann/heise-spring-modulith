@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 
-public interface CareTaskRepository extends Repository<CareTask, UUID> {
+interface CareTaskRepository extends Repository<CareTask, UUID> {
 
     CareTask save(CareTask task);
 

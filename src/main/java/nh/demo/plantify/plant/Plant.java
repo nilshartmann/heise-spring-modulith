@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "plants", schema = "plant_schema")
-public class Plant {
+class Plant {
 
     @Id
     private UUID id;

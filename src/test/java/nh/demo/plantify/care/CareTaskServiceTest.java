@@ -1,16 +1,15 @@
 package nh.demo.plantify.care;
 
 import nh.demo.plantify.TestcontainersConfiguration;
+import nh.demo.plantify.care.suggestion.CareTaskType;
 import nh.demo.plantify.plant.PlantRegisteredEvent;
 import nh.demo.plantify.plant.PlantType;
-import org.hibernate.sql.exec.spi.JdbcCallFunctionReturn;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.modulith.test.Scenario;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.util.UUID;
 

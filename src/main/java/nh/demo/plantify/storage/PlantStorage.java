@@ -1,7 +1,6 @@
 package nh.demo.plantify.storage;
 
 import jakarta.persistence.*;
-import nh.demo.plantify.plant.Plant;
 
 import java.time.LocalDate;
 import java.util.Objects;

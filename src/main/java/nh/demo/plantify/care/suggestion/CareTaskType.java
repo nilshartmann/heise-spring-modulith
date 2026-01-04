@@ -1,4 +1,4 @@
-package nh.demo.plantify.care;
+package nh.demo.plantify.care.suggestion;
 
 public enum CareTaskType {
     /* Gießen */

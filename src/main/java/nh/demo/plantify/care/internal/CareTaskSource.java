@@ -1,4 +1,4 @@
-package nh.demo.plantify.care;
+package nh.demo.plantify.care.internal;
 
 public enum CareTaskSource {
     /**
