@@ -4,7 +4,6 @@ package nh.demo.plantify.care;
 import nh.demo.plantify.TestcontainersConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
@@ -18,12 +17,13 @@ import org.springframework.test.web.servlet.assertj.MvcTestResult;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@ApplicationModuleTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ApplicationModuleTest(webEnvironment = RANDOM_PORT)
 @Import(TestcontainersConfiguration.class)
 @AutoConfigureMockMvc
 @Sql(value = "/test-care-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-class CareControllerTest {
+class CareTaskControllerTest {
 
     @Autowired
     MockMvcTester mockMvcTester;

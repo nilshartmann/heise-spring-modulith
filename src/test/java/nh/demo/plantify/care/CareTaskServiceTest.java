@@ -67,6 +67,8 @@ class CareTaskServiceTest {
             .query(String.class)
             .single();
 
+
+
         assertThat(schemaName).isEqualTo("care_schema");
     }
 
