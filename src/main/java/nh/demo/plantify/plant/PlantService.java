@@ -6,10 +6,11 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
-class PlantService {
+public class PlantService {
 
     private static final Logger log = LoggerFactory.getLogger( PlantService.class );
 
@@ -22,7 +23,7 @@ class PlantService {
     }
 
     @Transactional
-    public Plant registerPlant(UUID ownerId, String name, PlantType plantType, String location) {
+    Plant registerPlant(UUID ownerId, String name, PlantType plantType, String location) {
         // Keine Duplikate für denselben Owner
         if (plantRepository.existsByOwnerIdAndName(ownerId, name)) {
             throw new IllegalArgumentException("Plant with name '%s' already exists for this owner".formatted(name));
@@ -41,6 +42,13 @@ class PlantService {
         ));
 
         return plant;
+    }
+
+    public Optional<UUID> findOwnerForPlant(UUID plantId) {
+        return plantRepository
+            .findById(plantId)
+            .map(Plant::getOwnerId)
+            ;
     }
 
 }

@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -21,10 +20,6 @@ class InvoiceGenerator {
     private static final Logger log = LoggerFactory.getLogger(InvoiceGenerator.class);
     private final UsageRepository usageRepository;
 
-    private final static Map<UsageType, BigDecimal> prices = Map.of(
-        UsageType.CARE_TASK_COMPLETED, new BigDecimal("0.50"),
-        UsageType.STORAGE_COMPLETED, new BigDecimal("12.00")
-    );
     private final ApplicationEventPublisher applicationEventPublisher;
 
     InvoiceGenerator(UsageRepository usageRepository, ApplicationEventPublisher applicationEventPublisher) {
@@ -41,12 +36,12 @@ class InvoiceGenerator {
         Instant start = month.atDay(1).atStartOfDay().toInstant(ZoneOffset.UTC);
         Instant end = month.atEndOfMonth().atTime(23, 59, 59).toInstant(ZoneOffset.UTC);
 
-        List<UUID> plantIds = usageRepository.findPlantIdsBetween(
+        List<UUID> ownerIds = usageRepository.findOwnerIdsBetween(
             start, end
         );
 
-        plantIds.forEach(plantId -> {
-                var cost = calculateAmountForPlant(plantId, start, end);
+        ownerIds.forEach(plantId -> {
+                var cost = calculateCostsEuroForOwner(plantId, start, end);
                 // for simplicity we only publish the event
                 // but does not write the invoice to the database
                 var invoiceCreatedEvent = new InvoiceGeneratedEvent(
@@ -58,23 +53,23 @@ class InvoiceGenerator {
                 log.info("Invoice created for client '{}', published event: {}",
                     plantId, invoiceCreatedEvent
                 );
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         );
     }
 
-    private BigDecimal calculateAmountForPlant(UUID plantId, Instant start, Instant end) {
-        var usages = usageRepository.findByPlantIdAndRecordedAtBetween(
-            plantId,
+    private BigDecimal calculateCostsEuroForOwner(UUID ownerId, Instant start, Instant end) {
+        var costsCents = usageRepository.getTotalCostsForOwnerRecordedBetween(
+            ownerId,
             start,
             end
         );
 
-        BigDecimal amount = usages
-            .stream()
-            .map(usageRecord -> prices.get(usageRecord.getUsageType()))
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
-
-        return amount;
+        return BigDecimal.valueOf(costsCents).movePointLeft(2);
     }
 
 

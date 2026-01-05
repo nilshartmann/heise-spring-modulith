@@ -15,8 +15,8 @@ public class UsageRecord {
     @Id
     private UUID id;
     
-    @Column(name = "plant_id", nullable = false)
-    private UUID plantId;
+    @Column(name = "owner_id", nullable = false)
+    private UUID ownerId;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "usage_type", nullable = false)
@@ -30,16 +30,20 @@ public class UsageRecord {
 
     protected UsageRecord() {}
 
-    public UsageRecord(UUID plantId, UsageType usageType, Instant recordedAt, long costCents) {
+    public UsageRecord(UUID ownerId, UsageType usageType, Instant recordedAt, long costCents) {
         this.id = UUID.randomUUID();
-        this.plantId = Objects.requireNonNull(plantId);
+        this.ownerId = Objects.requireNonNull(ownerId);
         this.usageType = Objects.requireNonNull(usageType);
         this.recordedAt = Objects.requireNonNull(recordedAt);
         this.costCents = costCents;
     }
 
     public UUID getId() { return id; }
-    public UUID getClientId() { return plantId; }
+
+    public UUID getOwnerId() {
+        return ownerId;
+    }
+
     public UsageType getUsageType() { return usageType; }
     public Instant getRecordedAt() { return recordedAt; }
 

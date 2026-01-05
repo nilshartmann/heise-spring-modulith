@@ -63,7 +63,7 @@ class CareTaskServiceTest {
         // aber keine Service-Abhängigkeit
         var schemaName = jdbcClient
             .sql("select nspname as schema_name from pg_namespace p, pg_authid pa where p.nspowner = pa.oid and pa.rolname = :myUserName and p.nspname not like 'pg_%' and p.nspname != 'information_schema'")
-            .param("myUserName", TestcontainersConfiguration.TEST_DB_USERNAME)
+            .param("myUserName", "test")
             .query(String.class)
             .single();
 

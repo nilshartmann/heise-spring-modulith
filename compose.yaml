@@ -7,3 +7,5 @@ services:
       - 'POSTGRES_USER=myuser'
     ports:
       - '5432'
+  kafka:
+    image: apache/kafka-native:4.1.1

@@ -11,10 +11,11 @@ public interface UsageRepository extends Repository<UsageRecord, UUID> {
 
     UsageRecord save(UsageRecord usageRecord);
 
-    @Query("SELECT DISTINCT u.plantId FROM UsageRecord u WHERE u.recordedAt BETWEEN :start AND :end")
-    List<UUID> findPlantIdsBetween(Instant start, Instant end);
+    @Query("SELECT DISTINCT u.ownerId FROM UsageRecord u WHERE u.recordedAt BETWEEN :start AND :end")
+    List<UUID> findOwnerIdsBetween(Instant start, Instant end);
 
-    List<UsageRecord> findByPlantIdAndRecordedAtBetween(
-        UUID plantId, Instant start, Instant end
+    @Query("SELECT sum (u.costCents) FROM UsageRecord u WHERE u.ownerId = :ownerId AND u.recordedAt BETWEEN :start AND :end")
+    long getTotalCostsForOwnerRecordedBetween(
+        UUID ownerId, Instant start, Instant end
     );
 }
