@@ -1,6 +1,6 @@
-package nh.demo.plantify.care.internal;
+package nh.demo.plantify.care;
 
-public enum CareTaskSource {
+enum CareTaskSource {
     /**
      * Task wurde vom System automatisch angelegt
      */
