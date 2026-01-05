@@ -2,7 +2,6 @@ package nh.demo.plantify.shared.config;
 
 import nh.demo.plantify.shared.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
