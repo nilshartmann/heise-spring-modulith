@@ -7,7 +7,6 @@ import nh.demo.plantify.care.CareTaskCompletedEvent;
 import nh.demo.plantify.care.InitialCareTasksCreatedEvent;
 import nh.demo.plantify.care.suggestion.CareTaskType;
 import nh.demo.plantify.plant.PlantService;
-import nh.demo.plantify.shared.exceptions.ResourceNotFoundException;
 import nh.demo.plantify.storage.PlantStorageCompletedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 @Component
-public class UsageTracker {
+class UsageTracker {
 
     private static final Logger log = LoggerFactory.getLogger(UsageTracker.class);
     private final UsageRepository usageRepository;
@@ -66,7 +65,7 @@ public class UsageTracker {
     void trackStorageCompleted(PlantStorageCompletedEvent event) {
         log.debug("Tracking PlantStorageCompletedEvent storageId={}", event.storageId());
 
-        var storageTime =  ChronoUnit.DAYS.between(event.startDate(), event.endDate());
+        var storageTime = ChronoUnit.DAYS.between(event.startDate(), event.endDate());
         var storageCostCents = storageTime * 200L;
 
         UsageRecord usageRecord = new UsageRecord(
