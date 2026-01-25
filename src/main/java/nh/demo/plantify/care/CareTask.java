@@ -44,6 +44,7 @@ class CareTask {
 
         this.nextDueDate = Objects.requireNonNull(nextDueDate);
         this.interval = interval;
+        this.active = true;
     }
 
     /**
