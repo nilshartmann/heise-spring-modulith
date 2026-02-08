@@ -18,4 +18,9 @@ public interface UsageRepository extends Repository<UsageRecord, UUID> {
     long getTotalCostsForOwnerRecordedBetween(
         UUID ownerId, Instant start, Instant end
     );
+
+    @Query("SELECT u FROM UsageRecord u WHERE u.ownerId = :ownerId AND u.recordedAt BETWEEN :start AND :end")
+    List<UsageRecord> getUsagesForOwnerRecordedBetween(
+        UUID ownerId, Instant start, Instant end
+    );
 }

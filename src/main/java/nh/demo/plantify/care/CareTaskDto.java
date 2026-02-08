@@ -11,6 +11,7 @@ record CareTaskDto(
     CareTaskType type,
     CareTaskSource source,
     LocalDate nextDueDate,
+    Integer interval,
     boolean recurring,
     boolean active
 ) {
@@ -21,6 +22,7 @@ record CareTaskDto(
             careTask.getType(),
             careTask.getSource(),
             careTask.getNextDueDate(),
+            careTask.getInterval(),
             careTask.isRecurring(),
             careTask.isActive()
         );

@@ -32,7 +32,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ApplicationModuleTest
+@ApplicationModuleTest(ApplicationModuleTest.BootstrapMode.ALL_DEPENDENCIES)
 @Import(TestcontainersConfiguration.class)
 @TestPropertySource(properties = {
     "spring.modulith.moments.enable-time-machine=true",
@@ -93,8 +93,8 @@ class InvoiceGeneratorTest {
                 assertThat(messages)
                     .extracting(InvoiceGeneratedEvent::ownerId)
                     .containsExactlyInAnyOrder(
-                        UUID.fromString("5ec3f30d-4df6-4080-a5dc-560e8db94259"),
-                        UUID.fromString("1c7132f5-0e91-420c-9987-7f6ac7911d3c")
+                        UUID.fromString("1bb1c2c1-5927-ba26-701a-7b2ff9bf0e82"),
+                        UUID.fromString("85483586-044c-9778-73b1-6327133cf030")
                     );
             });
     }

@@ -1,10 +1,12 @@
 package nh.demo.plantify.billing.invoice;
 
+import nh.demo.plantify.owner.OwnerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.modulith.moments.MonthHasPassed;
+import org.springframework.modulith.moments.support.TimeMachine;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,10 +23,14 @@ class InvoiceGenerator {
     private final UsageRepository usageRepository;
 
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final TimeMachine timeMachine;
+    private final OwnerRepository ownerRepository;
 
-    InvoiceGenerator(UsageRepository usageRepository, ApplicationEventPublisher applicationEventPublisher) {
+    InvoiceGenerator(UsageRepository usageRepository, ApplicationEventPublisher applicationEventPublisher, TimeMachine timeMachine, OwnerRepository ownerRepository) {
         this.usageRepository = usageRepository;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.timeMachine = timeMachine;
+        this.ownerRepository = ownerRepository;
     }
 
     @EventListener
@@ -40,24 +46,40 @@ class InvoiceGenerator {
             start, end
         );
 
-        ownerIds.forEach(plantId -> {
-                var cost = calculateCostsEuroForOwner(plantId, start, end);
+        var invoiceCreatedAt = timeMachine.now();
+
+        ownerIds.forEach(ownerId -> {
+                var usageRecords = usageRepository.getUsagesForOwnerRecordedBetween(
+                    ownerId, start, end
+                );
+
+
+                var owner = ownerRepository.findById(ownerId).orElseThrow();
                 // for simplicity we only publish the event
                 // but does not write the invoice to the database
+
+                var amount = BigDecimal.valueOf(
+                        usageRecords
+                            .stream()
+                            .mapToLong(UsageRecord::getCostCents)
+                            .sum()
+                    )
+                    .movePointLeft(2);
+
                 var invoiceCreatedEvent = new InvoiceGeneratedEvent(
-                    plantId,
+                    invoiceCreatedAt,
+                    ownerId,
+                    owner.getName(),
                     month,
-                    cost
+                    amount,
+                    usageRecords.stream().map(BillingItem::of).toList()
                 );
+
                 applicationEventPublisher.publishEvent(invoiceCreatedEvent);
+
                 log.info("Invoice created for client '{}', published event: {}",
-                    plantId, invoiceCreatedEvent
+                    ownerId, invoiceCreatedEvent
                 );
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
             }
         );
     }

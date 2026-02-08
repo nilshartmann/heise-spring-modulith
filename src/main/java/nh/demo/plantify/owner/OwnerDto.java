@@ -4,7 +4,7 @@ import java.util.UUID;
 
 record OwnerDto(UUID id, String name) {
 
-    static OwnerDto fromOwner(Owner owner) {
+    static OwnerDto of(Owner owner) {
         return new OwnerDto(owner.getId(), owner.getName());
     }
 }

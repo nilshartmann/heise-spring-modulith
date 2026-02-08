@@ -100,7 +100,7 @@ class CareTaskService {
     @Transactional(readOnly = true)
     List<CareTaskDto> getAllCareTasks() {
         return careTaskRepository
-            .findAll().stream()
+            .findAllByOrderByNextDueDate().stream()
             .map(CareTaskDto::of)
             .toList();
     }
