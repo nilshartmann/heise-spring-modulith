@@ -1,9 +1,6 @@
 package nh.demo.plantify.roses;
 
-import nh.demo.plantify.care.suggestion.CareTaskSuggestion;
-import nh.demo.plantify.care.suggestion.CareTaskSuggestionFactory;
-import nh.demo.plantify.care.suggestion.CareTaskType;
-import nh.demo.plantify.care.suggestion.OneTimeCareTaskSuggestion;
+import nh.demo.plantify.care.suggestion.*;
 import nh.demo.plantify.plant.PlantType;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +13,8 @@ class RoseCareTaskSuggestionFactory implements CareTaskSuggestionFactory {
     public List<CareTaskSuggestion> createSuggestion(PlantType plantType, String location) {
         if (plantType == PlantType.ROSES) {
             return List.of(
-                new OneTimeCareTaskSuggestion(CareTaskType.WATERING, 10, LocalDate.now().plusDays(10))
+                // Rosen müssten TÄGLICH gegossen werden!
+                new RecurringCareTaskSuggestion(CareTaskType.WATERING, 10, 1)
             );
         }
 

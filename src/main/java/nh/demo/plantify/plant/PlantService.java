@@ -24,11 +24,6 @@ public class PlantService {
 
     @Transactional
     Plant registerPlant(UUID ownerId, String name, PlantType plantType, String location) {
-        // Keine Duplikate für denselben Owner
-        if (plantRepository.existsByOwnerIdAndName(ownerId, name)) {
-            throw new IllegalArgumentException("Plant with name '%s' already exists for this owner".formatted(name));
-        }
-
         var plant = new Plant(ownerId, name, plantType, location);
         plantRepository.save(plant);
 
