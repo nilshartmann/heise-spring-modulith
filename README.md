@@ -4,7 +4,7 @@ This repository contains the source code for my article **"Deep Dive Spring Modu
 
 You can read the article online:
 
-- german: [Part 1](https://nilshartmann.net/a/spring-modulith-deep-dive-heise-developer) Part 2 (to be published)
+- [in german](https://nilshartmann.net/a/spring-modulith-deep-dive-heise-developer)
 - english: [Part 1](https://www.heise.de/en/background/Deep-Dive-Spring-Modulith-Part-1-Functional-Modules-in-Focus-11180592.html) Part 2 (to be published)
 
 ![Roses](./roses.png)
