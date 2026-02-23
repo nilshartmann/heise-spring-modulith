@@ -1,6 +1,6 @@
 # Spring Modulith Example Application
 
-This repository contains the source code for my article **"Deep Dive Spring Modulith"]** published by heise developer.
+This repository contains the source code for my article **"Deep Dive Spring Modulith"** published by heise developer.
 
 You can read the article online:
 
