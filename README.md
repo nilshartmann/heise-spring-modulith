@@ -1,6 +1,11 @@
 # Spring Modulith Example Application
 
-This repository contains the source code for my article ["Deep Dive Spring Modulith"](https://nilshartmann.net/a/spring-modulith-deep-dive-heise-developer), published by heise developer (german).
+This repository contains the source code for my article **"Deep Dive Spring Modulith"]** published by heise developer.
+
+You can read the article online:
+
+- german: [Part 1](https://nilshartmann.net/a/spring-modulith-deep-dive-heise-developer) Part 2 (to be published)
+- english: [Part 1](https://www.heise.de/en/background/Deep-Dive-Spring-Modulith-Part-1-Functional-Modules-in-Focus-11180592.html) Part 2 (to be published)
 
 ![Roses](./roses.png)
 
